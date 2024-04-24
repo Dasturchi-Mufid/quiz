@@ -1,0 +1,9 @@
+23.04.24
+1) Barcha modellarga generation_Code degan uniquelikni ta`minlaydigan xususiyat qo`shing + 
+2) Quiz Create +, List +, Detail +
+Question Create +, Detail +
+Option Create +
+yuqoridagi ishni qiluvchi template yozing
+**Qo`shimcha
+1) login +
+2) question update, delete, detail + 
