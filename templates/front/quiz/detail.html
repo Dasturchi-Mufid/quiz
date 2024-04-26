@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-header">
+        <h2 class="header-title">Quiz</h2>
+    </div>
+    <div class="card">
+        <form method="post">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Ism Familiya</label>
+                    <input type="text" class="form-control" required placeholder="Full name" name="user_name">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Telefon raqam</label>
+                    <input type="text" class="form-control" required placeholder="+998********" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Email</label>
+                    <input type="email" class="form-control" required placeholder="example@gmail.com" name="email">
+                </div>
+                {% for question in questions %}
+                <div class="container">
+                    <div class="d-flex justify-content-between" >
+                        <h2 class="font-weight-normal m-b-10">{{forloop.counter}}. {{question.name}}</h2>
+                    </div>
+                    {% for option in question.options %}
+                    <div class="alert alert-primary">
+                        <div class="radio">
+                            <input id="radio2{{option.id}}" name="{{question.id}}" type="radio" value="{{option.id}}">
+                            <label for="radio2{{option.id}}">{{option.name}}</label>
+                        </div>
+                    </div>                  
+                    {% endfor %}
+                </div>              
+                {% endfor %}
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary btn-tone m-r-5">Jo`natish</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

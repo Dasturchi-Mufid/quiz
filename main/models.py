@@ -43,10 +43,6 @@ class Question(CodeGenerate):
 
     def __str__(self):
         return self.name
-    
-    @property
-    def all_options(self):
-        return Option.objects.filter(question=self)
 
     @property
     def correct_answer(self):
@@ -81,7 +77,7 @@ class Answer(CodeGenerate):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user_name, self.quiz.name
+        return f'{self.user_name, self.quiz.name}'
 
 
 class AnswerDetail(CodeGenerate):
@@ -93,3 +89,6 @@ class AnswerDetail(CodeGenerate):
     @property
     def is_correct(self):
         return self.user_answer == self.question.correct_answer
+    
+    def __str__(self):
+        return f'{self.answer.user_name},{self.question.name},{self.user_answer.name},{self.is_correct}'

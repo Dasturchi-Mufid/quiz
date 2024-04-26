@@ -7,3 +7,16 @@ yuqoridagi ishni qiluvchi template yozing
 **Qo`shimcha
 1) login +
 2) question update, delete, detail + 
+
+25.04.2024
+1) test vaqtini to`g`rilash
+2) test update bo`lganda undan oldin tanlangan optionga berilgan javob ham update bo`lishi kerak
+3) Ochiq savollarga admin tekshiruvi
+
+1) Dasturni full tugatish 
+2) Test yechgandan so`ng natijani Modal oyna qilib ko`rsatish +
+3) Dasturni 100% o`zbekchaga tarjima qilish 
+QO`SHIMCHA (Baholanmaydi) 
+1) Quizlarni sanadan sanagacha ishlaydigan qilish 
+2) To`g`ri javoblarga update yozish, update bo`lganda shu vaqtgacha yozilgan javoblarni to`g`rilash 
+3) Ochiq testlik savollar tuzish
