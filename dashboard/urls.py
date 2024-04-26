@@ -14,6 +14,7 @@ urlpatterns = [
     path('question-update/<str:code>/',views.question_update,name='question_update'),
     path('answer-list/<str:code>/', views.answer_list, name='answer_list'),
     path('answer-detail/<str:code>/', views.answer_detail, name='answer_detail'),
+    path('register/',views.register,name='register'),
     path('login/',views.log_in,name='login'),
     path('logout/',views.log_out,name='logout'),
 ]

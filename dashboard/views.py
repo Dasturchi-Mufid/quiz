@@ -137,6 +137,25 @@ def log_in(request):
     return render(request, 'auth/login.html')
 
 
+def register(request):
+    if request.method == 'POST':
+        try:
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            confirm_password = request.POST.get('confirmPassword')
+            if password == confirm_password:
+                models.User.objects.create_user(
+                    username=username, 
+                    password=password,
+                    )
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                return redirect('dashboard:index')
+        except:
+            return redirect('front:register')
+    return render(request, 'auth/register.html')
+
+
 def log_out(request):
     logout(request)
     messages.success(request, 'logout success')
