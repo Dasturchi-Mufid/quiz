@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 from main import models
 
+from random import sample
+
+
 @login_required(login_url='dashboard:login')
 def index(request):
     quizzes = models.Quiz.objects.filter(author=request.user.id)
@@ -30,7 +33,7 @@ def quiz_create(request):
 @login_required(login_url='dashboard:login')
 def quiz_detail(request, code):
     quiz = models.Quiz.objects.get(code=code)
-    questions = models.Question.objects.filter(quiz=quiz)
+    questions = models.Question.objects.filter(quiz=quiz).order_by('?')
     context = {
         'quiz':quiz,
         'questions':questions

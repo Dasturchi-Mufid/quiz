@@ -20,3 +20,8 @@ QO`SHIMCHA (Baholanmaydi)
 1) Quizlarni sanadan sanagacha ishlaydigan qilish 
 2) To`g`ri javoblarga update yozish, update bo`lganda shu vaqtgacha yozilgan javoblarni to`g`rilash 
 3) Ochiq testlik savollar tuzish
+
+30.04.2024
+1) Quiz app uchun postman docs yozish +
+2) Quiz appdagi quiz va questiondagi name deb atalgan fieldlarni CKEDITORga o`rnatish 
+3) quiz appdagi savollarni random orqali birinketin ko`rinadigan qilish +

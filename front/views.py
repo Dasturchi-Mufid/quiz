@@ -8,7 +8,7 @@ def index(request):
 def quiz_detail(request,code):
     try:
         quiz = models.Quiz.objects.get(code=code)
-        questions = models.Question.objects.filter(quiz=quiz)
+        questions = models.Question.objects.filter(quiz=quiz).order_by('?')
 
         if request.method == 'POST':
             answer = models.Answer.objects.create(
