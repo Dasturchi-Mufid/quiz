@@ -10,6 +10,9 @@
             <a class="text-gray" href="{% url 'dashboard:answer_list' quiz.code %}">
                 <button class="btn btn-primary btn-tone m-r-5">Natijalar</button>
             </a>
+            <a class="text-gray" href="{% url 'dashboard:excel' quiz.code %}">
+                <button class="btn btn-primary btn-tone m-r-5">Natijalarni yuklash</button>
+            </a>
             <div class="d-flex justify-content-end">
                 <a href="{% url 'dashboard:question_create' quiz.code %}"><button class="btn btn-primary btn-tone m-r-5">Savol qo`shish</button></a>
             </div>

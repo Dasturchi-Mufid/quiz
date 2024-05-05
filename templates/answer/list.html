@@ -9,7 +9,10 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <h4>Javoblar ro`yxat</h4>
+            <h4 style="display: inline;">Javoblar ro`yxat</h4>
+            <a class="text-gray" href="{% url 'dashboard:excel' quiz.code %}">
+                <button class="btn btn-primary btn-tone m-r-5">Natijalarni yuklash</button>
+            </a>
             <div class="m-t-25">
                 <div class="table-responsive">
                     <table class="table">

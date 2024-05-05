@@ -79,6 +79,29 @@ class Answer(CodeGenerate):
     def __str__(self):
         return f'{self.user_name, self.quiz.name}'
 
+    @property
+    def questions(self):
+        return Question.objects.filter(quiz=self.quiz).count()
+    
+    @property
+    def correct_answers(self):
+        correct = 0
+        for answer_detail in AnswerDetail.objects.filter(answer=self):
+            if answer_detail.is_correct:
+                correct += 1
+        return correct
+    
+    @property
+    def incorrect_answers(self):
+        incorrect = 0
+        for answer_detail in AnswerDetail.objects.filter(answer=self):
+            if not answer_detail.is_correct:
+                incorrect += 1
+        return incorrect
+    
+    @property
+    def percentage(self):
+        return int(self.correct_answers * 100 / self.questions)
 
 class AnswerDetail(CodeGenerate):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)

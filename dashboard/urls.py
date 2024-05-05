@@ -6,6 +6,7 @@ app_name = 'dashboard'
 urlpatterns = [
     path('', views.index,name='index'),
     path('quizzes/',views.quiz_list,name='quiz_list'),
+    path('excel/<str:code>/',views.generate_excel,name='excel'),
     path('add-quiz/',views.quiz_create,name='quiz_create'),
     path('quiz-detail/<str:code>/',views.quiz_detail,name='quiz_detail'),
     path('question-create/<str:code>/',views.question_create,name='question_create'),

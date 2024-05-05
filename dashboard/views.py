@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
+from openpyxl import Workbook
 
 from main import models
 
@@ -33,7 +36,7 @@ def quiz_create(request):
 @login_required(login_url='dashboard:login')
 def quiz_detail(request, code):
     quiz = models.Quiz.objects.get(code=code)
-    questions = models.Question.objects.filter(quiz=quiz).order_by('?')
+    questions = models.Question.objects.filter(quiz=quiz)
     context = {
         'quiz':quiz,
         'questions':questions
@@ -93,8 +96,10 @@ def question_update(request, code):
 
 
 def answer_list(request, code):
+    print(code)
     answers = models.Answer.objects.filter(quiz__code = code)
-    context = {'answers':answers}
+    quiz = models.Quiz.objects.get(code=code)
+    context = {'answers':answers, 'quiz':quiz}
     return render(request, 'answer/list.html', context)
 
 
@@ -163,3 +168,37 @@ def log_out(request):
     logout(request)
     messages.success(request, 'logout success')
     return redirect('dashboard:index')
+
+
+def generate_excel(request,code):
+    wb = Workbook()
+    ws = wb.active
+    quiz = models.Quiz.objects.get(code=code)
+    res = models.Answer.objects.filter(quiz__code=code)
+    res = sorted(res, key=lambda t: t.correct_answers,reverse=True)
+    data = []
+    for num, i in enumerate(res,1):
+        data.append(
+            {
+                '№':num,
+                'Full name':i.user_name,
+                'Phone':i.phone,
+                'Email':i.email,
+                'Questions':i.questions,
+                'Correct answers':i.correct_answers,
+                'Incorrect answers':i.incorrect_answers,
+                'Percentage':i.percentage
+            }
+        )
+
+    if data:
+        headers = list(data[0].keys())
+        ws.append(headers)
+        for row in data:
+            ws.append(list(row.values()))
+        
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename={quiz.name}.xlsx'
+    wb.save(response)
+
+    return response
